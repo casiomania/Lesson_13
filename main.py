@@ -6,71 +6,88 @@
 
 class Person:
     def __init__(self, name, age):
-        self.name = name
-        self.age = age
+        self.__name = name
+        self.__age = age
+
+    def get_name(self):
+        return self.__name
+
+    def get_age(self):
+        return self.__age
 
     def __str__(self):
-        return f"Name: {self.name}, Age: {self.age}"
+        return f"Name: {self.__name}, Age: {self.__age}"
 
 
 class Teacher(Person):
     def __init__(self, name, age, subjects=None):
         super().__init__(name, age)
-        self.subjects = subjects if subjects else []
+        self.__subjects = subjects if subjects else []
 
     def add_subject(self, subject):
-        self.subjects.append(subject)
+        self.__subjects.append(subject)
+
+    def get_subjects(self):
+        return self.__subjects
 
     def __str__(self):
-        return super().__str__() + f", Teaches: {', '.join(self.subjects)}"
+        return super().__str__() + f", Teaches: {', '.join(self.__subjects)}"
 
 
 class Student(Person):
     def __init__(self, name, age, enrolled_subject=None):
         super().__init__(name, age)
-        self.enrolled_subject = enrolled_subject
+        self.__enrolled_subject = enrolled_subject
 
     def enroll(self, subject):
-        self.enrolled_subject = subject
+        self.__enrolled_subject = subject
+
+    def get_enrolled_subject(self):
+        return self.__enrolled_subject
 
     def __str__(self):
-        return super().__str__() + f", Enrolled in: {self.enrolled_subject}"
+        return super().__str__() + f", Enrolled in: {self.__enrolled_subject}"
 
 
 class Subject:
     def __init__(self, name, teacher=None):
-        self.name = name
-        self.teacher = teacher
+        self.__name = name
+        self.__teacher = teacher
 
     def assign_teacher(self, teacher):
-        self.teacher = teacher
+        self.__teacher = teacher
+
+    def get_name(self):
+        return self.__name
+
+    def get_teacher(self):
+        return self.__teacher
 
     def __str__(self):
-        return f"Subject: {self.name}, Teacher: {self.teacher}"
+        return f"Subject: {self.__name}, Teacher: {self.__teacher}"
 
 
 class Academy:
     def __init__(self, name):
-        self.name = name
-        self.teachers = []
-        self.students = []
-        self.subjects = []
+        self.__name = name
+        self.__teachers = []
+        self.__students = []
+        self.__subjects = []
 
     def add_teacher(self, teacher):
-        self.teachers.append(teacher)
+        self.__teachers.append(teacher)
 
     def add_student(self, student):
-        self.students.append(student)
+        self.__students.append(student)
 
     def add_subject(self, subject):
-        self.subjects.append(subject)
+        self.__subjects.append(subject)
 
     def __str__(self):
-        return f"Academy: {self.name}, Teachers: {len(self.teachers)}, Students: {len(self.students)}, Subjects: {len(self.subjects)}"
+        return f"Academy: {self.__name}, Teachers: {len(self.__teachers)}, Students: {len(self.__students)}, Subjects: {len(self.__subjects)}"
 
 
 # Example
-
 academy = Academy("Python Academy")
 
 teacher_andrii = Teacher("Andrii", 30)
